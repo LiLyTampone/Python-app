@@ -12,29 +12,29 @@ pipeline {
             }
         }
 
-        stage('Setup Python') {
-            steps {
-                sh '''
-                    python3 -m venv $VENV_DIR
-                    source $VENV_DIR/bin/activate
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
-                '''
-            }
-        }
+stage('Setup Python') {
+    steps {
+        bat '''
+            python -m venv %VENV_DIR%
+            call %VENV_DIR%\\Scripts\\activate.bat
+            pip install --upgrade pip
+            pip install -r requirements.txt
+        '''
+    }
+}
 
-        stage('Run Unit Tests') {
-            steps {
-                sh '''
-                    source $VENV_DIR/bin/activate
-                    pytest tests/
-                '''
-            }
-        }
+  stage('Run Unit Tests') {
+    steps {
+        bat '''
+            call %VENV_DIR%\\Scripts\\activate.bat
+            pytest tests/
+        '''
+    }
+}
 
         stage('Deploy') {
             steps {
-                sh '''
+                bat '''
                     echo "Ứng dụng đã sẵn sàng để deploy"
                     # Ví dụ: scp hoặc ssh để deploy lên server nếu cần
                 '''
