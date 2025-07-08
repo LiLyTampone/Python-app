@@ -15,7 +15,7 @@ pipeline {
 stage('Setup Python') {
     steps {
         bat '''
-            python -m venv %VENV_DIR%
+            C:\Users\DELL\AppData\Local\Programs\Python\Python313\python.exe -m venv %VENV_DIR%
             call %VENV_DIR%\\Scripts\\activate.bat
             pip install --upgrade pip
             pip install -r requirements.txt
