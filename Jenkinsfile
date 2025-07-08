@@ -28,6 +28,7 @@ pipeline {
             steps {
                 bat """
                     call %VENV_DIR%\\Scripts\\activate.bat
+                    set PYTHONPATH=%CD%
                     %VENV_DIR%\\Scripts\\pytest.exe tests
                 """
             }
